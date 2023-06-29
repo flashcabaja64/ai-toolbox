@@ -56,15 +56,15 @@ const NavBar: React.FC = () => {
   }
 
   return (
-    <AppBar position='static'>
-      <Container maxWidth="xl" className='bg-gray-700'>
+    <AppBar position='sticky' className='!bg-white'>
+      <Container maxWidth="xl" className='bg-white'>
         <Toolbar disableGutters className='justify-between !flex'>
           <Typography
               variant="h6"
               noWrap
               component="a"
               href="/"
-              className='font-bold flex xs:hidden md:flex 2xl:flex text-inherit mr-2 tracking-[.3rem] no-underline'
+              className='font-bold text-black flex xs:hidden md:flex 2xl:flex text-inherit mr-2 tracking-[.3rem] no-underline'
             >
               Toolbox
           </Typography>
@@ -75,7 +75,7 @@ const NavBar: React.FC = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 //onClick={handleOpenNavMenu}
-                color="inherit"
+                className='text-black'
               >
               <MenuIcon />
             </IconButton>
@@ -84,11 +84,11 @@ const NavBar: React.FC = () => {
           <Box className="xs:hidden md:flex">
             {pages.map(page => {
               return page === "Tools" ? (
-                <Button key={page} className='my-2 !text-white block' onClick={handleClick}>
+                <Button key={page} className='my-2 !text-black block' onClick={handleClick}>
                   {page} {open ? <ArrowDropDown /> : <ArrowDropUp />}
                 </Button>
               ) : (
-                <Button key={page} className='my-2 !text-white block'>
+                <Button key={page} className='my-2 !text-black block'>
                   {page}
                 </Button>
               )
