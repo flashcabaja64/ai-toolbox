@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Toolbar, Typography, Box, Button, Menu, IconButton, Container, AppBar } from '@mui/material';
 import { ArrowDropUp, ArrowDropDown, Menu as MenuIcon } from '@mui/icons-material';
 import { textLinks, imageLinks, audioLinks } from './links';
-//import { Dropdown, DropdownMenuItem, DropdownNestedMenuItem } from './Dropdown';
 
 type linksType = {
   heading: string;
@@ -12,10 +11,15 @@ type linksType = {
   component: React.ReactNode
 }
 
-const pages = ["Home", "Tools", "FAQ's", "Contact Us"];
+type LinksComponentProps = {
+  linkType: linksType[];
+  title: string
+}
+
+const pages: Array<string> = ["Home", "Tools", "FAQ's", "Contact Us"];
 
 const NavBar: React.FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -24,17 +28,17 @@ const NavBar: React.FC = () => {
     setAnchorEl(null);
   };
 
-  const Links = (linkType: linksType[], title: string) => {
+  const Links = ({linkType, title}: LinksComponentProps) => {
     return (
-      <div className='p-7'>
+      <div className='p-7 max-w-7xl'>
         <p className='border-b-[1px] border-gray-300 pb-2 mb-5'>
           {title}
         </p>
         <div className='grid grid-cols-2 gap-7 xs:grid-cols-1'>
           {
             linkType.map(link => (
-              <div className='mt-2'>
-                <Link to={link.path} className="flex" >
+              <div key={link.heading} className='mt-2'>
+                <Link to={link.path} className="flex" onClick={handleClose}>
                   <div className="mr-2">
                     {link.component}
                   </div>
@@ -97,11 +101,11 @@ const NavBar: React.FC = () => {
             transformOrigin={{ vertical: "top", horizontal: 0}}
             anchorReference='anchorEl'
             className='!top-[14px] xs:!top-[40px]'
-            sx={{ "& .MuiMenu-paper": { minWidth: "100%", left: "0px !important" } }}
+            sx={{ "& .MuiMenu-paper": { minWidth: "100%", maxWidth: "1536px", left: "0px !important" } }}
           >
-            {Links(textLinks, 'Text AI')}
-            {Links(imageLinks, 'Image AI')}
-            {Links(audioLinks, 'Audio AI')}
+            <Links linkType={textLinks} title="Text AI" />
+            <Links linkType={imageLinks} title="Image AI" />
+            <Links linkType={audioLinks} title="Audio AI" />
           </Menu>
           <Box className="xs:hidden md:flex">
             

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 interface Props {
   children?: ReactNode,
@@ -7,7 +7,7 @@ interface Props {
 
 const Layout = ({ children, className="" }: Props) => {
   return (
-    <section className={`w-full h-full inline-block z-0 bg-light p-32 ${className}`}>
+    <section className={`w-full h-screen inline-block z-0 bg-light p-12 ${className}`}>
       {children}
     </section>
   )

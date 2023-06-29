@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Home from "../pages/Home";
 import MainLayout from "../components/MainLayout";
+import TextToImage from "../pages/TextToImage";
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +12,12 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />
+      },
+      {
+        path: "/text-to-image",
+        element: <TextToImage />
       }
     ]
-  }
+  },
+  
 ]);
