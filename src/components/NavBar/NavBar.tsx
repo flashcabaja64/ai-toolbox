@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Container from '@mui/material/Container';
-import { Toolbar, Typography, Box, Button, Menu, IconButton } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import { FontDownload, ArrowDropUp, ArrowDropDown } from '@mui/icons-material';
+import { Toolbar, Typography, Box, Button, Menu, IconButton, Container, AppBar } from '@mui/material';
+import { ArrowDropUp, ArrowDropDown, Menu as MenuIcon } from '@mui/icons-material';
+import { textLinks, imageLinks, audioLinks } from './links';
 //import { Dropdown, DropdownMenuItem, DropdownNestedMenuItem } from './Dropdown';
+
+type linksType = {
+  heading: string;
+  subHeading: string;
+  path: string;
+  component: React.ReactNode
+}
 
 const pages = ["Home", "Tools", "FAQ's", "Contact Us"];
 
@@ -18,6 +23,33 @@ const NavBar: React.FC = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const Links = (linkType: linksType[], title: string) => {
+    return (
+      <div className='p-7'>
+        <p className='border-b-[1px] border-gray-300 pb-2 mb-5'>
+          {title}
+        </p>
+        <div className='grid grid-cols-2 gap-7 xs:grid-cols-1'>
+          {
+            linkType.map(link => (
+              <div className='mt-2'>
+                <Link to={link.path} className="flex" >
+                  <div className="mr-2">
+                    {link.component}
+                  </div>
+                  <div>
+                    <p className='hover:underline font-medium'>{link.heading}</p>
+                    <p className='text-sm font-normal'>{link.subHeading}</p>
+                  </div>
+                </Link>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    )
+  }
 
   return (
     <AppBar position='static'>
@@ -64,28 +96,12 @@ const NavBar: React.FC = () => {
             anchorEl={anchorEl} 
             transformOrigin={{ vertical: "top", horizontal: 0}}
             anchorReference='anchorEl'
-            className='!top-[14px]'
+            className='!top-[14px] xs:!top-[40px]'
             sx={{ "& .MuiMenu-paper": { minWidth: "100%", left: "0px !important" } }}
           >
-            <div className='p-7'>
-              <p className='border-b-[1px] border-gray-300 pb-2 mb-5'>
-                Text AI
-              </p>
-              <div className='mt-2'>
-                <Link to="/" className="flex" >
-                  <div className="mr-2">
-                    <FontDownload/>
-                  </div>
-                  <div>
-                    <p className='hover:underline font-medium'>Image To Text</p>
-                    <p className='text-sm font-normal'>Convert your image into text</p>
-                  </div>
-                </Link>
-              </div>
-            </div>
-            {/* <Stack direction="row" justifyContent="space-evenly">
-
-            </Stack> */}
+            {Links(textLinks, 'Text AI')}
+            {Links(imageLinks, 'Image AI')}
+            {Links(audioLinks, 'Audio AI')}
           </Menu>
           <Box className="xs:hidden md:flex">
             
