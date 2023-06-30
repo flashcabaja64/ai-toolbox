@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 type ButtonComponentProps = {
   className?: string;
-  children?: ReactElement
+  children?: ReactElement;
 }
 
 const Button = ({ className, children, ...rest}: ButtonComponentProps) => {
