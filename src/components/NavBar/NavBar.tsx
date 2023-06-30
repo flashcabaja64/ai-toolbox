@@ -17,12 +17,7 @@ type LinksComponentProps = {
   title: string
 }
 
-type Pages = {
-  name: string;
-  path: string;
-}
-
-const pages: Array<Pages> = [
+const pages: { name: string, path: string }[] = [
   {
     name: "Home",
     path: "/"
