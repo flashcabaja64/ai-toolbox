@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Toolbar, Typography, Box, Button, Menu, IconButton, Container, AppBar } from '@mui/material';
-import { ArrowDropUp, ArrowDropDown, Menu as MenuIcon } from '@mui/icons-material';
+import { ArrowDropUp, ArrowDropDown } from '@mui/icons-material';
 import { textLinks, imageLinks, audioLinks } from './links';
-import { Hamburger } from '../../assets/svg';
+import { HamburgerIcon } from '../../assets/svgIcons';
 
 type linksType = {
   heading: string;
@@ -79,7 +78,7 @@ const NavBar: React.FC = () => {
         </a>
         <button type="button" className="md:inline-flex hidden items-center p-2 ml-1 text-sm rounded-lg  focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600" aria-controls="mega-menu-full" aria-expanded="false">
           <span className="sr-only">Open main menu</span>
-          <Hamburger />
+          <HamburgerIcon />
         </button>
         <div id="mega-menu-full" className="items-center justify-between font-medium md:hidden w-full 2xl:w-auto 2xl:order-1">
           <ul className="flex sm:flex-col sm:p-4 p-0 sm:mt-4 flex-row space-x-8 mt-0 md:bg-gray-900 border-gray-700">
