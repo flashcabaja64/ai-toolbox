@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Layout from '../components/Layout';
+import FullPageLayout from '../components/FullPageLayout';
 import { HfInference } from "@huggingface/inference";
 import { Spinner, MagnifyGlass } from '../assets/svgIcons';
 import Button from '../components/Button';
@@ -33,11 +33,11 @@ const TextToImage: React.FC = () => {
     setText(value)
   }
   return (
-    <Layout className=''>
+    <FullPageLayout className=''>
       <h1 className='text-[50px] text-center'>
         Text to Image
       </h1>
-      <section className="block m-auto w-[80vw] pb-10">
+      <section className="block m-auto w-[80vw] pb-10 mt-5">
         {/* <FormControl className="min-w-xl max-w-2xl">
           <FormLabel>Enter Text Prompt for Image Conversion</FormLabel>
           <TextField 
@@ -82,7 +82,7 @@ const TextToImage: React.FC = () => {
           <img src={image} alt={text} />
         </div>
       )}
-    </Layout>
+    </FullPageLayout>
   )
 }
 
