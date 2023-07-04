@@ -6,7 +6,7 @@ import Button from '../components/Button';
 
 const inference = new HfInference(process.env.REACT_APP_HG_TOKEN);
 
-const TextToImage: React.FC = () => {
+const TextToImage = () => {
 
   const [image, setImage] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean | undefined>(false);
@@ -52,14 +52,14 @@ const TextToImage: React.FC = () => {
           </Button>
         </FormControl> */}
         <form onSubmit={onSubmit}>   
-          <label htmlFor="default-search" className="mb-2 text-sm font-medium sr-only text-white">Search</label>
+          <label htmlFor="generate-image" className="mb-2 text-sm font-medium sr-only text-white">Generate</label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <MagnifyGlass />
             </div>
             <input 
               type="search" 
-              id="default-search" 
+              id="generate-image" 
               className="block disabled:bg-gray-500 disabled:cursor-not-allowed w-full p-4 pl-10 text-sm rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" 
               placeholder="Generate an Image by text" 
               value={text}
@@ -71,7 +71,7 @@ const TextToImage: React.FC = () => {
               onClick={onSubmit}
               className='absolute right-2.5 bottom-2.5 top-2 disabled:cursor-not-allowed'
             >
-              {!loading ? "Search" : <Spinner />}
+              {!loading ? "Generate" : <Spinner />}
             </Button>
           </div>
         </form>
