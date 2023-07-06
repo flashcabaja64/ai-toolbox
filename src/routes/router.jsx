@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Home from "../pages/Home";
 import MainLayout from "../components/MainLayout";
-import TextToImage from "../pages/TextToImage";
-import TextToSpeech from "../pages/TextToSpeech";
+import { ToolType } from '../constants/constant';
+import Tool from "../pages/Tool";
 import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
@@ -18,11 +18,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/text-to-image",
-        element: <TextToImage />
+        element: <Tool toolName={ToolType.IMAGE}/>
       },
       {
         path: "/text-to-speech",
-        element: <TextToSpeech />
+        element: <Tool toolName={ToolType.SPEECH}/>
       }
     ]
   },
