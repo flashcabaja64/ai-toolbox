@@ -1,13 +1,13 @@
 import React from 'react';
 import { IGenerateOutput, ToolType } from '../constants/constant';
 
-const GenerateOutput = ({toolName, blob, text}: IGenerateOutput) => {
+const GenerateOutput = ({toolName, blob, data}: IGenerateOutput) => {
 
   switch(toolName) {
     case ToolType.TEXT_TO_IMAGE:
       return (
         <div className='flex justify-center'>
-          <img src={blob} alt={text} />
+          <img src={blob} alt={data?.toString()} />
         </div>
       )
       case ToolType.TEXT_TO_SPEECH:
@@ -16,6 +16,12 @@ const GenerateOutput = ({toolName, blob, text}: IGenerateOutput) => {
             <audio controls src={blob} />
           </div>
         )
+      case ToolType.IMAGE_TO_TEXT:
+          return (
+            <div className='flex justify-center'>
+              <p>{blob}</p>
+            </div>
+          )
       default:
         console.log('UNCATCHED CONDITION!');
         break;

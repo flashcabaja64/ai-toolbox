@@ -10,5 +10,5 @@ export interface ITool {
 
 export interface IGenerateOutput extends ITool {
   blob: string | undefined
-  text: string
+  data: string | FileList | null
 }

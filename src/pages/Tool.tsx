@@ -4,19 +4,26 @@ import { Spinner, MagnifyGlass } from '../assets/svgIcons';
 import Button from '../components/Button';
 import { useInferenceAPI } from '../hooks/useInferenceAPI';
 import GenerateOutput from '../components/GenerateOutput';
-import { ITool } from '../constants/constant';
+import { ITool, ToolType } from '../constants/constant';
 
 const Tool = ( { toolName }: ITool) => {
 
   const [blob, setBlob] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
   const [text, setText] = useState<string>('');
+  const [image, setImage] = useState<FileList | null>(null) ;
 
-  const onSubmit = useInferenceAPI(toolName, setBlob, setLoading, text);
+  const onSubmit = useInferenceAPI(toolName, setBlob, setLoading, text, image);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setText(value)
+    const { value, files } = e.target;
+    if(ToolType.IMAGE_TO_TEXT) {
+      setImage(files)
+
+    } else {
+      setText(value)
+    }
+    
   }
 
   const capitalizeToolName = toolName.charAt(0).toUpperCase() + toolName.slice(1);
@@ -33,15 +40,24 @@ const Tool = ( { toolName }: ITool) => {
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <MagnifyGlass />
             </div>
-            <input 
-              type="search" 
-              id={`generate-${toolName}`} 
-              className="block disabled:bg-gray-500 disabled:cursor-not-allowed w-full p-4 pl-10 text-sm rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" 
-              placeholder={`Generate ${toolName}`}
-              value={text}
-              onChange={handleInputChange}
-              disabled={loading} 
-            />
+            {toolName !== ToolType.IMAGE_TO_TEXT ? 
+              <input 
+                type="search" 
+                id={`generate-${toolName}`} 
+                className="block disabled:bg-gray-500 disabled:cursor-not-allowed w-full p-4 pl-10 text-sm rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" 
+                placeholder={`Generate ${toolName}`}
+                value={text}
+                onChange={handleInputChange}
+                disabled={loading} 
+              /> :
+              <input 
+                type="file" 
+                id="file-selector" 
+                accept=".jpg, .jpeg, .png"
+                onChange={handleInputChange}
+              />
+            }
+
             <Button 
               disabled={loading}
               onClick={onSubmit}
@@ -57,7 +73,7 @@ const Tool = ( { toolName }: ITool) => {
         <GenerateOutput 
           toolName={toolName}
           blob={blob}
-          text={text}
+          data={toolName !== ToolType.IMAGE_TO_TEXT ? text : image}
         />
       )}
     </Layout>
