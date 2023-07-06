@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Layout from '../components/Layout';
 import { Spinner, MagnifyGlass } from '../assets/svgIcons';
 import Button from '../components/Button';
 import { useInferenceAPI } from '../hooks/useInferenceAPI';
 import GenerateOutput from '../components/GenerateOutput';
 import { ITool, ToolType } from '../constants/constant';
+import FullPageLayout from '../components/FullPageLayout';
 
 const Tool = ( { toolName }: ITool) => {
 
@@ -21,6 +21,7 @@ const Tool = ( { toolName }: ITool) => {
       setImage(files)
 
     } else {
+      console.log('setText')
       setText(value)
     }
     
@@ -29,11 +30,11 @@ const Tool = ( { toolName }: ITool) => {
   const capitalizeToolName = toolName.charAt(0).toUpperCase() + toolName.slice(1);
   
   return (
-    <Layout className=''>
+    <FullPageLayout className=''>
       <h1 className='text-[50px] text-center'>
         {`${capitalizeToolName}`}
       </h1>
-      <section className="block m-auto w-[80vw] pb-10">
+      <section className="block m-auto w-[80vw] pb-10 mt-5">
         <form onSubmit={onSubmit}>   
           <label htmlFor={`generate-${toolName}`} className="mb-2 text-sm font-medium sr-only text-white">Generate</label>
           <div className="relative">
@@ -76,7 +77,7 @@ const Tool = ( { toolName }: ITool) => {
           data={toolName !== ToolType.IMAGE_TO_TEXT ? text : image}
         />
       )}
-    </Layout>
+    </FullPageLayout>
   )
 }
 
