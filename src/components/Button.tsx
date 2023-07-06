@@ -4,7 +4,7 @@ type ButtonComponentProps = {
   className?: string;
   disabled?: boolean;
   [x:string]: any;
-  children?: ReactElement | string;
+  children?: any;
 }
 
 const Button = ({ className, disabled, children, ...rest}: ButtonComponentProps) => {

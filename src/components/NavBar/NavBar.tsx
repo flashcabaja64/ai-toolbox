@@ -85,9 +85,9 @@ const NavBar: React.FC = () => {
             {pages.map(page => {
               return page.name === "Tools" ? (
                 <li key={page.name} onClick={toggleDropDown}>
-                  <Link to={''} className="block py-2 pl-3 pr-4 rounded md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-blue-500 md:hover:bg-transparent border-gray-700" aria-current="page">
+                  <button className="block py-2 pl-3 pr-4 rounded md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-blue-500 md:hover:bg-transparent border-gray-700" aria-current="page">
                     {page.name} {open ? <ArrowDropUp /> : <ArrowDropDown />}
-                  </Link>
+                  </button>
                 </li>
               ) : (
                 <li key={page.name}>
