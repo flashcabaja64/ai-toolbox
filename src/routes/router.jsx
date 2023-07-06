@@ -18,11 +18,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/text-to-image",
-        element: <Tool toolName={ToolType.IMAGE}/>
+        element: <Tool toolName={ToolType.TEXT_TO_IMAGE}/>
       },
       {
         path: "/text-to-speech",
-        element: <Tool toolName={ToolType.SPEECH}/>
+        element: <Tool toolName={ToolType.TEXT_TO_SPEECH}/>
       }
     ]
   },

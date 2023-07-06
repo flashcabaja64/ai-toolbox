@@ -24,7 +24,7 @@ const Tool = ( { toolName }: ITool) => {
   return (
     <Layout className=''>
       <h1 className='text-[50px] text-center'>
-        {`Text to ${capitalizeToolName}`}
+        {`${capitalizeToolName}`}
       </h1>
       <section className="block m-auto w-[80vw] pb-10">
         <form onSubmit={onSubmit}>   
@@ -37,7 +37,7 @@ const Tool = ( { toolName }: ITool) => {
               type="search" 
               id={`generate-${toolName}`} 
               className="block disabled:bg-gray-500 disabled:cursor-not-allowed w-full p-4 pl-10 text-sm rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" 
-              placeholder={`Generate ${toolName} by text`}
+              placeholder={`Generate ${toolName}`}
               value={text}
               onChange={handleInputChange}
               disabled={loading} 

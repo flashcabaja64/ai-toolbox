@@ -15,7 +15,7 @@ export const useInferenceAPI = (
     setLoading(true);
 
     switch(toolName) {
-      case ToolType.IMAGE:
+      case ToolType.TEXT_TO_IMAGE:
         try {
           const res = await inference.textToImage({
             model: 'stabilityai/stable-diffusion-2',
@@ -27,7 +27,7 @@ export const useInferenceAPI = (
           console.log(e)
         }
         break;
-        case ToolType.SPEECH:
+        case ToolType.TEXT_TO_SPEECH:
           try {
             const res = await inference.textToSpeech({
               model: 'espnet/kan-bayashi_ljspeech_vits',

@@ -4,13 +4,13 @@ import { IGenerateOutput, ToolType } from '../constants/constant';
 const GenerateOutput = ({toolName, blob, text}: IGenerateOutput) => {
 
   switch(toolName) {
-    case ToolType.IMAGE:
+    case ToolType.TEXT_TO_IMAGE:
       return (
         <div className='flex justify-center'>
           <img src={blob} alt={text} />
         </div>
       )
-      case ToolType.SPEECH:
+      case ToolType.TEXT_TO_SPEECH:
         return (
           <div className='flex justify-center'>
             <audio controls src={blob} />
