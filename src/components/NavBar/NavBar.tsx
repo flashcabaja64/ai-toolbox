@@ -70,7 +70,7 @@ const NavBar: React.FC = () => {
   }
 
   return (
-    <nav className="border-gray-600 bg-gray-900">
+    <nav className="border-gray-600 bg-gray-900 sticky top-0 z-10">
       <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
         <a href="/" className="flex items-center">
           <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
