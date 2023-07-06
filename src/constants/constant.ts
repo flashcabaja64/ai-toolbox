@@ -5,7 +5,7 @@ export enum ToolType {
 }
 
 export interface ITool {
-  toolName: ToolType
+  toolName: ToolType | string
 }
 
 export interface IGenerateOutput extends ITool {

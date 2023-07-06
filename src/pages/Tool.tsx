@@ -14,20 +14,7 @@ const Tool = ( { toolName }: ITool) => {
   const [image, setImage] = useState<FileList | null>(null) ;
 
   const onSubmit = useInferenceAPI(toolName, setBlob, setLoading, text, image);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, files } = e.target;
-    if(ToolType.IMAGE_TO_TEXT) {
-      setImage(files)
-
-    } else {
-      console.log('setText')
-      setText(value)
-    }
-    
-  }
-
-  const capitalizeToolName = toolName.charAt(0).toUpperCase() + toolName.slice(1);
+  const capitalizeToolName = toolName.split('-').map((t:string) => t.charAt(0).toUpperCase() + t.substring(1)).join('-');
   
   return (
     <FullPageLayout className=''>
@@ -48,21 +35,21 @@ const Tool = ( { toolName }: ITool) => {
                 className="block disabled:bg-gray-500 disabled:cursor-not-allowed w-full p-4 pl-10 text-sm rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" 
                 placeholder={`Generate ${toolName}`}
                 value={text}
-                onChange={handleInputChange}
+                onChange={(e) => setText(e.target.value)}
                 disabled={loading} 
               /> :
               <input 
                 type="file" 
                 id="file-selector" 
                 accept=".jpg, .jpeg, .png"
-                onChange={handleInputChange}
+                onChange={(e) => setImage(e.target.files)}
               />
             }
 
             <Button 
               disabled={loading}
               onClick={onSubmit}
-              className='absolute right-2.5 bottom-2.5 top-2 disabled:cursor-not-allowed'
+              className='absolute right-2.5 bottom-2.5 disabled:cursor-not-allowed'
             >
               {!loading ? "Generate" : <Spinner />}
             </Button>
