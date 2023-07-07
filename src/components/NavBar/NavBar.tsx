@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDropUp, ArrowDropDown } from '@mui/icons-material';
 import { textLinks, imageLinks, audioLinks } from './links';
-import { HamburgerIcon } from '../../assets/svgIcons';
+import { HamburgerIcon, SiteLogo } from '../../assets/svgIcons';
 
 type linksType = {
   heading: string;
@@ -37,6 +37,23 @@ const pages: { name: string, path: string }[] = [
 
 const NavBar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement>()
+
+  useEffect(() => {
+    const handleOutsideClick = (e: Event) => {
+      if (!ref?.current?.contains(e.target as HTMLDivElement)) {
+        setOpen(false);
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      document.addEventListener("click", handleOutsideClick, false);
+    }, 0);
+    return () => {
+      clearTimeout(timeoutId);
+      document.removeEventListener("click", handleOutsideClick, false);
+    };
+  });
 
   const toggleDropDown = () => {
     setOpen(prev => !prev);
@@ -45,7 +62,7 @@ const NavBar: React.FC = () => {
   const Links = ({linkType, title}: LinksComponentProps) => {
     return (
       <div className='p-3 max-w-7xl'>
-        <p className='border-b-[1px] border-gray-300 pb-2 mb-5 text-lg'>
+        <p className='border-b-[1.5px] border-gray-400 pb-2 mb-5 text-lg font-medium'>
           {title}
         </p>
         <div className='grid grid-cols-2 gap-7 xs:grid-cols-1'>
@@ -70,12 +87,12 @@ const NavBar: React.FC = () => {
   }
 
   return (
-    <nav className="border-gray-600 bg-gray-900 sticky top-0 z-10">
+    <nav className="border-gray-600 bg-gray-900 fixed w-full z-10">
       <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
-        <a href="/" className="flex items-center">
-          <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
+        <Link to="/" className="flex items-center">
+          <SiteLogo className="h-8 mr-3" altText="AI Toolbox logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Toolbox</span>
-        </a>
+        </Link>
         <button type="button" className="md:inline-flex hidden items-center p-2 ml-1 text-sm rounded-lg  focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600" aria-controls="mega-menu-full" aria-expanded="false">
           <span className="sr-only">Open main menu</span>
           <HamburgerIcon />
@@ -101,7 +118,7 @@ const NavBar: React.FC = () => {
         </div>
       </div>
       {open && (
-        <div id="mega-menu-full-dropdown" className="mt-1 shadow-sm border-y bg-gray-800 border-gray-600 z-10">
+        <div id="mega-menu-full-dropdown" className={`${open && 'mt-1 animate-fadeInSlideDown shadow-sm border-y bg-gray-800 border-gray-600 z-10'} `}>
           <div className="grid max-w-screen-xl px-4 py-5 mx-auto text-white sm:grid-cols-1 md:px-6">
               <Links linkType={textLinks} title="Text AI" />
               <Links linkType={imageLinks} title="Image AI" />

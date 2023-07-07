@@ -14,36 +14,48 @@ const Tool = ( { toolName }: ITool) => {
   const [image, setImage] = useState<FileList | null>(null) ;
 
   const onSubmit = useInferenceAPI(toolName, setBlob, setLoading, text, image);
+  
   const capitalizeToolName = toolName.split('-').map((t:string) => t.charAt(0).toUpperCase() + t.substring(1)).join('-');
   
   return (
     <FullPageLayout className=''>
-      <h1 className='text-[50px] text-center'>
+      <h1 className='text-[50px] text-center text-white'>
         {`${capitalizeToolName}`}
       </h1>
       <section className="block m-auto w-[80vw] pb-10 mt-5">
         <form onSubmit={onSubmit}>   
           <label htmlFor={`generate-${toolName}`} className="mb-2 text-sm font-medium sr-only text-white">Generate</label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <MagnifyGlass />
-            </div>
+            
             {toolName !== ToolType.IMAGE_TO_TEXT ? 
-              <input 
-                type="search" 
-                id={`generate-${toolName}`} 
-                className="block disabled:bg-gray-500 disabled:cursor-not-allowed w-full p-4 pl-10 text-sm rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" 
-                placeholder={`Generate ${toolName}`}
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                disabled={loading} 
-              /> :
-              <input 
-                type="file" 
-                id="file-selector" 
-                accept=".jpg, .jpeg, .png"
-                onChange={(e) => setImage(e.target.files)}
-              />
+              <>
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <MagnifyGlass />
+                </div>
+                <input 
+                  type="search" 
+                  id={`generate-${toolName}`} 
+                  className="block disabled:bg-gray-500 disabled:cursor-not-allowed w-full p-4 pl-10 text-sm rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" 
+                  placeholder={`Generate ${toolName}`}
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                  disabled={loading} 
+                /> 
+              </>
+              :
+              <>
+                <label className="block mb-2 text-sm font-medium text-white" htmlFor="file_input">Upload file</label>
+                <input 
+                  className="block w-full text-sm border rounded-lg cursor-pointer text-gray-400 focus:outline-none bg-gray-700 border-gray-600 placeholder-gray-400" 
+                  aria-describedby="file_input_help" 
+                  id="file-selector" 
+                  accept=".jpg, .jpeg, .png"
+                  type="file" 
+                  onChange={(e) => setImage(e.target.files)}
+                />
+                <p className="mt-1 text-sm text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+              </>
+
             }
 
             <Button 
