@@ -5,6 +5,7 @@ import MainLayout from "../components/MainLayout";
 import { ToolType } from '../constants/constant';
 import Tool from "../pages/Tool";
 import ErrorPage from "../pages/ErrorPage";
+import Chat from "../components/Chat/Chat";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "/image-to-text",
         element: <Tool toolName={ToolType.IMAGE_TO_TEXT}/>
+      },
+      {
+        path: '/summarization',
+        element: <Chat />
       }
     ]
   },
