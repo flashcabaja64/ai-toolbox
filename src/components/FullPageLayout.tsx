@@ -7,7 +7,7 @@ interface Props {
 
 const FullPageLayout = ({ children, className="" }: Props) => {
   return (
-    <section className={`w-full h-screen absolute top-[75px] xs:top-[50px] inline-block bg-light p-12 xs:px-6 ${className}`}>
+    <section className={`w-full h-screen absolute bg-secondary top-[70px] xs:top-[50px] inline-block bg-light p-12 xs:px-6 ${className}`}>
       {children}
     </section>
   )
