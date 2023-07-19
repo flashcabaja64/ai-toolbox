@@ -46,7 +46,7 @@ const Tool = ( { toolName }: ITool) => {
               <>
                 <label className="block mb-2 text-sm font-medium text-white" htmlFor="file_input">Upload file</label>
                 <input 
-                  className="block w-full text-sm border rounded-lg cursor-pointer text-gray-400 focus:outline-none bg-gray-700 border-gray-600 placeholder-gray-400" 
+                  className="block w-full text-md border rounded-lg hover:file:bg-gray-400 hover:file:cursor-pointer file:p-2 file:text-gray-100 file:bg-gray-500 file:border-0 cursor-pointer text-gray-400 focus:outline-none bg-gray-700 border-gray-600 placeholder-gray-400" 
                   aria-describedby="file_input_help" 
                   id="file-selector" 
                   accept=".jpg, .jpeg, .png"

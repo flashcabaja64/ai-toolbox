@@ -49,6 +49,7 @@ const NavBar: React.FC = () => {
     const timeoutId = setTimeout(() => {
       document.addEventListener("click", handleOutsideClick, false);
     }, 0);
+
     return () => {
       clearTimeout(timeoutId);
       document.removeEventListener("click", handleOutsideClick, false);
