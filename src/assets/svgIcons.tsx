@@ -3,6 +3,11 @@ type SiteLogoProps = {
   altText: string;
 }
 
+type DefaultSVGProps = {
+  className?: string;
+  close?: React.MouseEventHandler<SVGElement>;
+}
+
 export const HamburgerIcon = () => {
   return (
     <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -38,9 +43,9 @@ export const Spinner = () => {
   )
 }
 
-export const MagnifyGlass = () => {
+export const MagnifyGlass = ({className}:DefaultSVGProps) => {
   return (
-    <svg aria-hidden="true" className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg aria-hidden="true" className={`w-5 h-5 text-gray-400 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
     </svg>
   )
@@ -105,6 +110,14 @@ export const SiteLogo = ({className, altText}: SiteLogoProps) => {
           <stop offset="1" stopColor="#45B2FF"/>
         </linearGradient>
       </defs>
+    </svg>
+  )
+}
+
+export const CloseButton = ({className, close }: DefaultSVGProps) => {
+  return (
+    <svg onClick={close} stroke="black" strokeWidth="2" xmlns="http://www.w3.org/2000/svg" className={`${className}`} viewBox="0 0 50 50" width="15px" height="15px">
+      <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"/>
     </svg>
   )
 }

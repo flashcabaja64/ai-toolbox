@@ -5,7 +5,7 @@ import MainLayout from "../components/MainLayout";
 import { ToolType } from '../constants/constant';
 import Tool from "../pages/Tool";
 import ErrorPage from "../pages/ErrorPage";
-import Chat from "../components/Chat/Chat";
+import Summarization from "../pages/Summarization";
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/summarization',
-        element: <Chat />
+        element: <Summarization />
       }
     ]
   },
