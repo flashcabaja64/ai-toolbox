@@ -5,14 +5,14 @@ const inference = new HfInference(process.env.REACT_APP_HG_TOKEN);
 
 export const useInferenceAPI = (
   toolName: string, 
-  setBlob: React.Dispatch<React.SetStateAction<string | undefined>>, 
+  setBlobOrText: React.Dispatch<React.SetStateAction<string | undefined>>, 
   setLoading: React.Dispatch<React.SetStateAction<boolean>>, 
   text: string,
   image: FileList | null) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setBlob(undefined);
+    setBlobOrText(undefined);
     setLoading(true);
 
     switch(toolName) {
@@ -22,7 +22,7 @@ export const useInferenceAPI = (
             model: 'stabilityai/stable-diffusion-2',
             inputs: text,
           })
-          setBlob(URL.createObjectURL(res));
+          setBlobOrText(URL.createObjectURL(res));
           setLoading(false);
         } catch (e) {
           console.log(e)
@@ -34,27 +34,40 @@ export const useInferenceAPI = (
               model: 'espnet/kan-bayashi_ljspeech_vits',
               inputs: text,
             })
-            setBlob(URL.createObjectURL(res));
+            setBlobOrText(URL.createObjectURL(res));
             setLoading(false);
           } catch (e) {
             console.log(e)
           }
           break;
         case ToolType.IMAGE_TO_TEXT:
-          
-            try {
-              if(image) {
-                const res = await inference.imageToText({
-                  data: image[0],
-                  model: 'nlpconnect/vit-gpt2-image-captioning'
-                })
-                setBlob(res.generated_text);
-                setLoading(false);
-              }
-            } catch (e) {
-              console.log(e)
+          try {
+            if(image) {
+              const res = await inference.imageToText({
+                data: image[0],
+                model: 'nlpconnect/vit-gpt2-image-captioning'
+              })
+              setBlobOrText(res.generated_text);
+              setLoading(false);
             }
-            break;
+          } catch (e) {
+            console.log(e)
+          }
+          break;
+        case ToolType.SUMMARIZATION:
+          try {
+            if(image) {
+              const res = await inference.summarization({
+                inputs: text,
+                model: 'facebook/bart-large-cnn'
+              })
+              setBlobOrText(res.summary_text);
+              setLoading(false);
+            }
+          } catch (e) {
+            console.log(e)
+          }
+          break;
         default:
           console.log('UNCATCHED CONDITION!');
           break;

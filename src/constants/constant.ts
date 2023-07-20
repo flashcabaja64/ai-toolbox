@@ -1,7 +1,8 @@
 export enum ToolType {
   TEXT_TO_IMAGE='text-to-image',
   TEXT_TO_SPEECH='text-to-speech',
-  IMAGE_TO_TEXT='image-to-text'
+  IMAGE_TO_TEXT='image-to-text',
+  SUMMARIZATION='summarization'
 }
 
 export interface ITool {
