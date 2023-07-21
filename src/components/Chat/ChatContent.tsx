@@ -1,11 +1,46 @@
 import React from 'react';
 
-const ChatContent = () => {
+type ChatContentProps = {
+  messages: { message: JSX.Element, isUserSent: boolean }[] | undefined
+}
+
+const ChatContent = ({ messages }: ChatContentProps ) => {
   return (
     <div className='flex flex-col h-full'>
       <div className='grid grid-cols-12 gap-y-2'>
         {/* recipient" */}
-        <div className="col-start-1 col-end-8 p-3 rounded-lg">
+        {
+          messages?.map((item, i) => {
+            if(!item.isUserSent) {
+              return (
+                <div key={i} className="col-start-1 col-end-8 p-3 rounded-lg">
+                  <div className="flex flex-row items-center">
+                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                      AI
+                    </div>
+                    <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                      <div>{item.message}</div>
+                    </div>
+                  </div>
+                </div>
+              )
+            } else {
+              return (
+                <div key={i} className="col-start-6 col-end-13 p-3 rounded-lg">
+                  <div className="flex items-center justify-start flex-row-reverse">
+                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                      Me
+                    </div>
+                    <div className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                      <div>{item.message}</div>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+          })
+        }
+        {/* <div className="col-start-1 col-end-8 p-3 rounded-lg">
           <div className="flex flex-row items-center">
             <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
               AI
@@ -15,7 +50,7 @@ const ChatContent = () => {
             </div>
           </div>
         </div>
-        {/* Sender */}
+        
         <div className="col-start-6 col-end-13 p-3 rounded-lg">
           <div className="flex items-center justify-start flex-row-reverse">
             <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
@@ -25,7 +60,7 @@ const ChatContent = () => {
               <div>I'm ok what about you?</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

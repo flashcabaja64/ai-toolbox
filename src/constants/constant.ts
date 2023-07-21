@@ -13,3 +13,7 @@ export interface IGenerateOutput extends ITool {
   blob: string | undefined
   data: string | FileList | null
 }
+
+export type APIResponseType = {
+  [key: string]: FileList | string | boolean;
+}

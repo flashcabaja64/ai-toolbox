@@ -17,19 +17,19 @@ export const router = createBrowserRouter([
         index: true,
         element: <Home />
       },
-      {
-        path: "/text-to-image",
-        element: <Tool toolName={ToolType.TEXT_TO_IMAGE}/>
-      },
-      {
-        path: "/text-to-speech",
-        element: <Tool toolName={ToolType.TEXT_TO_SPEECH}/>
-      }
-      ,
-      {
-        path: "/image-to-text",
-        element: <Tool toolName={ToolType.IMAGE_TO_TEXT}/>
-      },
+      // {
+      //   path: "/text-to-image",
+      //   element: <Tool toolName={ToolType.TEXT_TO_IMAGE}/>
+      // },
+      // {
+      //   path: "/text-to-speech",
+      //   element: <Tool toolName={ToolType.TEXT_TO_SPEECH}/>
+      // }
+      // ,
+      // {
+      //   path: "/image-to-text",
+      //   element: <Tool toolName={ToolType.IMAGE_TO_TEXT}/>
+      // },
       {
         path: '/summarization',
         element: <Summarization />
