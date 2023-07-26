@@ -15,21 +15,29 @@ const Chat = () => {
   const [prompt, setPrompt] = useState<string>("")
   const [image, setImage] = useState<FileList | null>(null);
   const [messages, setMessages] = useState<any>([]);
+  const [filteredMessages, setFilteredMessages] = useState<any>([])
 
   const clearInput = () => setSearchText("");
   const location = useLocation();
   const toolName = location.pathname.split('/')[1]
+  const onSubmit = useInferenceAPI(toolName, setBlobOrText, setLoading, prompt, image);
 
   const getPrompt = (text: string) => {
     setPrompt(text)
   }
 
-  const onSubmit = useInferenceAPI(toolName, setBlobOrText, setLoading, prompt, image);
+  const searchMessages = (text: string) => {
+    const newMessages = messages.filter((item: { message: string }) => {
+      return item.message.toLowerCase().includes(text.toLowerCase())
+    })
+    
+    setFilteredMessages(newMessages)
+  }  
 
   useEffect(() => {
     if(blobOrText) {
-      console.log('useeffect')
-      setMessages([...messages, blobOrText])
+      setMessages([...messages, blobOrText]);
+      setFilteredMessages([...messages, blobOrText])
     }
   },[blobOrText])
   
@@ -43,9 +51,13 @@ const Chat = () => {
               setSearchText={setSearchText} 
               clearInput={clearInput} 
               headerName={toolName}
+              searchMessages={searchMessages}
             />
             <div className='flex flex-col h-full overflow-x-auto mb-4'>
-              <ChatContent messages={messages} />
+              <ChatContent 
+                messages={messages} 
+                filteredMessages={filteredMessages}
+              />
             </div>
             <ChatMessageBar 
               loading={loading} 

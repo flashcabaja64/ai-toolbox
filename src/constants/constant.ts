@@ -17,3 +17,7 @@ export interface IGenerateOutput extends ITool {
 export type APIResponseType = {
   [key: string]: FileList | string | boolean;
 }
+
+export type HTMLElementEvent<T extends HTMLElement> = Event & {
+  target: T;
+}
