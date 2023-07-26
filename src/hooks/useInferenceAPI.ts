@@ -1,17 +1,17 @@
 import { HfInference } from "@huggingface/inference";
-import { ToolType } from '../constants/constant';
+import { ToolType, APIResponseType } from '../constants/constant';
 
 const inference = new HfInference(process.env.REACT_APP_HG_TOKEN);
 
 export const useInferenceAPI = (
   toolName: string, 
-  setBlobOrText: React.Dispatch<React.SetStateAction<string | undefined>>, 
+  setBlobOrText: React.Dispatch<React.SetStateAction<string | APIResponseType | undefined>>, 
   setLoading: React.Dispatch<React.SetStateAction<boolean>>, 
   text: string,
   image: FileList | null) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    //e.preventDefault();
     setBlobOrText(undefined);
     setLoading(true);
 
@@ -56,13 +56,17 @@ export const useInferenceAPI = (
           break;
         case ToolType.SUMMARIZATION:
           try {
-            if(image) {
+            if(text) {
               const res = await inference.summarization({
                 inputs: text,
                 model: 'facebook/bart-large-cnn'
               })
-              setBlobOrText(res.summary_text);
               setLoading(false);
+              setBlobOrText({
+                message: res.summary_text,
+                isUserSent: false
+              });
+              
             }
           } catch (e) {
             console.log(e)
@@ -73,6 +77,6 @@ export const useInferenceAPI = (
           break;
     }
   }
+
   return onSubmit;
-  
 }

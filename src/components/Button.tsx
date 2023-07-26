@@ -13,7 +13,7 @@ const Button = ({ className, disabled, children, ...rest}: ButtonComponentProps)
       disabled={disabled}
       type="button" 
       {...rest}
-      className={`text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800 ${className}`}
+      className={`text-white focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800 ${className}`}
     >
       {children}
     </button>
