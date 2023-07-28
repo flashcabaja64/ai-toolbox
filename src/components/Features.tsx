@@ -4,16 +4,17 @@ import { ReadMoreArrow } from '../assets/svgIcons';
 
 const Features: React.FC = () => {
   return (
-    <Container className=''>
-      <div className="md:w-2/3 lg:w-1/2">
+    <Container className='py-4'>
+      <div className="w-full">
         <h2 className="my-8 text-2xl font-bold text-black md:text-4xl">
-          A technology-first approach to payments
-          and finance
+          Intelligent Personalization: Empowering Tools at Your Fingertips
         </h2>
-        <p className="text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ad ipsum pariatur autem, fugit laborum in atque amet obcaecati? Nisi minima aspernatur, quidem nulla cupiditate nam consequatur eligendi magni adipisci.</p>
+        <p className="text-gray-500">
+          Experience the transformative capabilities of our diverse AI tools and embrace the potential of artificial intelligence, elevating your online experience to new heights. Don't miss out on the future take the next step and explore the limitless possibilities of our AI website now!
+        </p>
       </div>
       <div
-      className="mt-16 grid divide-x divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden rounded-3xl border border-gray-100 text-gray-600 dark:border-gray-700 sm:grid-cols-2 lg:grid-cols-4 lg:divide-y-0 xl:grid-cols-4"
+      className="mt-16 grid grid-cols-4 divide-x divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden rounded-3xl border border-gray-100 text-gray-600 dark:border-gray-700 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:divide-y-0"
     >
       <div className="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
         <div className="relative space-y-8 py-12 p-8">
@@ -32,11 +33,11 @@ const Features: React.FC = () => {
               First feature
             </h5>
             <p className="text-gray-600 dark:text-gray-300">
-              Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.
+              Convert text to stunning visuals effortlessly with AI-Generated Images.
             </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary">
-            <span className="text-sm">Read more</span>
+          <a href="#" className="flex items-center justify-between group-hover:text-secondary hover:font-medium">
+            <span className="text-sm">Explore Now!</span>
             <ReadMoreArrow />               
           </a>
         </div>
@@ -58,11 +59,11 @@ const Features: React.FC = () => {
               Second feature
             </h5>
             <p className="text-gray-600 dark:text-gray-300">
-              Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.
+            Save time with AI-Powered Summaries, extracting key insights from lengthy text.
             </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary">
-            <span className="text-sm">Read more</span>
+          <a href="#" className="flex items-center justify-between group-hover:text-secondary hover:font-medium">
+            <span className="text-sm">Explore Now!</span>
             <ReadMoreArrow />                  
           </a>
         </div>
@@ -84,11 +85,11 @@ const Features: React.FC = () => {
               Third feature
             </h5>
             <p className="text-gray-600 dark:text-gray-300">
-              Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.
+            Bring your content to life with Text-to-Audio Conversion
             </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary">
-            <span className="text-sm">Read more</span>
+          <a href="#" className="flex items-center justify-between group-hover:text-secondary hover:font-medium">
+            <span className="text-sm">Explore Now!</span>
             <ReadMoreArrow />                   
           </a>
         </div>
@@ -114,11 +115,11 @@ const Features: React.FC = () => {
               More features
             </h5>
             <p className="text-gray-600 dark:text-gray-300">
-              Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.
+              There are many more features at the touch of your fingertips.
             </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary">
-            <span className="text-sm">Read more</span>
+          <a href="#" className="flex items-center justify-between group-hover:text-secondary hover:font-medium">
+            <span className="text-sm">Explore Now!</span>
             <ReadMoreArrow />                  
           </a>
         </div>

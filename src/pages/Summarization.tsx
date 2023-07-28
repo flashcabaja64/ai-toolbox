@@ -1,8 +1,11 @@
 import Chat from "../components/Chat/Chat";
+import FullPageLayout from "../components/FullPageLayout";
 
 const Summarization = () => {
   return (
-    <Chat />
+    <FullPageLayout className="">
+      <Chat />
+    </FullPageLayout>
   )
 }
 

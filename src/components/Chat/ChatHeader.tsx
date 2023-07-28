@@ -20,8 +20,8 @@ const ChatHeader = ({ searchText, setSearchText, clearInput, headerName, searchM
   }
 
   return (
-    <div className='flex border-b-[1px] border-b-gray-400 pb-2 justify-between'>
-      <p className='my-auto font-medium'>{filterHeaderName(headerName)}</p>
+    <div className='flex border-b-[1px] border-b-gray-400 pb-2 justify-between xs:flex-col'>
+      <p className='my-auto font-medium xs:pb-2 xs:text-center xs:text-lg pr-2'>{filterHeaderName(headerName)}</p>
       <div className='relative'>
         <MagnifyGlass className='inline absolute top-[10px] left-1'/>
         <input 

@@ -2,10 +2,10 @@ import { FontDownload, Summarize, QuestionAnswer, ChatBubble, Image, Lyrics } fr
 
 export const textLinks = [
   {
-    heading: "Image To Text",
-    subHeading: "Convert your images to text",
-    path: "/image-to-text",
-    component: <FontDownload />
+    heading: "Text To Image",
+    subHeading: "Convert your text into images",
+    path: "/text-to-image",
+    component: <Image />
   },
   {
     heading: "Summarize your text",
@@ -29,10 +29,10 @@ export const textLinks = [
 
 export const imageLinks = [
   {
-    heading: "Text To Image",
-    subHeading: "Convert your text into images",
-    path: "/text-to-image",
-    component: <Image />
+    heading: "Image To Text",
+    subHeading: "Convert your images to text",
+    path: "/image-to-text",
+    component: <FontDownload />
   },
 ];
 
