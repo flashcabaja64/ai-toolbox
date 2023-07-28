@@ -1,19 +1,38 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '../Button';
 import { SendIcon, Spinner } from '../../assets/svgIcons';
 
 const ChatMessageBar = ({ onSubmit, getPrompt, setMessages, messages, loading }: any) => {
   const [prompt, setPrompt] = useState<string>("");
+  const [errorText, setErrorText] = useState<string>("");
 
-  const handleChange = (text:string) => {
+  useEffect(() => {}, [errorText])
+
+  const handleChange = (text: string) => {
     getPrompt(text);
     setPrompt(text);
   }
 
   const handleSubmit = () => {
-    setMessages([...messages, { message: prompt, isUserSent: true }])
-    onSubmit();
-    setPrompt("");
+    if(inputValidation()) {
+      setMessages([...messages, { message: prompt, isUserSent: true }])
+      onSubmit();
+      setPrompt("");
+    }
+  }
+
+  const inputValidation = () => {
+    let promptWordLength = prompt.trim().split(" ").length;
+    setErrorText("");
+
+    if(!prompt) {
+      setErrorText("Please start typing a prompt.");
+      return false;
+    } else if(promptWordLength <= 4) {
+      setErrorText("Please type five words or more.");
+      return false;
+    }
+    return true;
   }
 
   return (
@@ -33,14 +52,10 @@ const ChatMessageBar = ({ onSubmit, getPrompt, setMessages, messages, loading }:
             disabled={loading} 
             placeholder='Start typing...'
             onChange={e => handleChange(e.target.value)} 
-            className={`flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10 ${loading && 'cursor-not-allowed bg-gray-300'}`} 
+            className={`flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10 ${errorText && 'border-red-500 focus:border-red-500'} ${loading && 'cursor-not-allowed bg-gray-300'}`} 
           />
-          <button className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </button>
         </div>
+        {errorText && <p className='text-red-500 text-sm'>{errorText}</p>}
       </div>
       <div className="ml-4">
         {loading ? <Spinner /> : (
@@ -52,6 +67,7 @@ const ChatMessageBar = ({ onSubmit, getPrompt, setMessages, messages, loading }:
           </Button>
         )}
       </div>
+      
     </div>
   )
 }
