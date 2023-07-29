@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from '../components/Button';
 import Features from '../components/Features';
+import Faqs from '../components/Faqs';
+
 const Home: React.FC = () => {
   return (
     <>
@@ -25,6 +27,7 @@ const Home: React.FC = () => {
         </div>
       </div>
       <Features />
+      <Faqs />
     </>
   )
 }
