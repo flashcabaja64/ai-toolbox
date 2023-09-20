@@ -17,10 +17,10 @@ export const router = createBrowserRouter([
         index: true,
         element: <Home />
       },
-      // {
-      //   path: "/text-to-image",
-      //   element: <Tool toolName={ToolType.TEXT_TO_IMAGE}/>
-      // },
+      {
+        path: "/text-to-image",
+        element: <Summarization />
+      },
       // {
       //   path: "/text-to-speech",
       //   element: <Tool toolName={ToolType.TEXT_TO_SPEECH}/>

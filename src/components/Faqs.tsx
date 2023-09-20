@@ -23,7 +23,7 @@ const Faqs = () => {
     <div className='py-2'>
       <div className="flex flex-row justify-between cursor-pointer" onClick={onToggle}>
         <div className={`${active ? 'text-gray-50': 'text-gray-300'} font-semibold`}>{question}</div>
-        <div className={`${active ? 'text-gray-50': 'text-gray-300'} font-semibold`}>{active ? '-' : '+'}</div>
+        <div className={`text-2xl ${active ? 'text-gray-50': 'text-gray-300'} font-semibold`}>{active ? '-' : '+'}</div>
       </div>
       {active && <div className='text-gray-400 pt-2'>{answer}</div>}
     </div>
@@ -31,11 +31,11 @@ const Faqs = () => {
 
   return (
     <section className='bg-secondary'>
-      <h2 className='text-white text-[50px] text-center font-semibold'>
+      <h2 className='text-white text-[50px] text-center font-semibold xs:text-[40px]'>
         Frequently Asked Questions
       </h2>
 
-      <div className='max-w-3xl my-2 divide-y-[1px] m-auto py-3'>
+      <div className='max-w-3xl my-2 divide-y-[1px] m-auto p-3'>
         {data.map(({question, answer}, i) => (
           <AccordionItem 
             question={question} 

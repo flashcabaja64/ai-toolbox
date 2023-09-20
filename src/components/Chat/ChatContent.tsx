@@ -1,12 +1,12 @@
 import React from 'react';
 
 type ChatContentProps = {
-  messages: { message: JSX.Element, isUserSent: boolean }[] | undefined;
+  messages: { message: JSX.Element | string, isUserSent: boolean }[] | undefined;
   filteredMessages: { message: JSX.Element, isUserSent: boolean }[]
 }
 
 const ChatContent = ({ filteredMessages }: ChatContentProps ) => {
-
+  
   return (
     <div className='flex flex-col h-full'>
       <div className='grid grid-cols-12 gap-y-2'>
@@ -21,7 +21,11 @@ const ChatContent = ({ filteredMessages }: ChatContentProps ) => {
                       AI
                     </div>
                     <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                      <div>{item.message}</div>
+                      <div>
+                        {
+                          typeof item === 'string' ? <img src={`${item}`} /> : item.message
+                        }
+                      </div>
                     </div>
                   </div>
                 </div>
