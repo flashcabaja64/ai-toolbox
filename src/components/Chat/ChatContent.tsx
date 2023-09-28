@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from '../Modal';
 
 type ChatContentProps = {
   messages: { message: JSX.Element | string, isUserSent: boolean }[] | undefined;
@@ -6,6 +7,29 @@ type ChatContentProps = {
 }
 
 const ChatContent = ({ filteredMessages }: ChatContentProps ) => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const ImageContainer = ({dataItem}: any) => {
+    return (
+      <span onClick={openModal}>
+        <img src={`${dataItem}`} className="cursor-pointer" />
+        {isModalOpen && (
+          <Modal isOpen={openModal} onClose={closeModal}>
+            <img src={`${dataItem}`} alt="" />
+          </Modal>
+        )}
+      </span>
+    )
+  }
   
   return (
     <div className='flex flex-col h-full'>
@@ -13,6 +37,9 @@ const ChatContent = ({ filteredMessages }: ChatContentProps ) => {
         {/* recipient" */}
         {
           filteredMessages.map((item, i) => {
+            //TODO: Need to pass last sent message as alt text for image.
+            // let altText = item.isUserSent && item.message
+            // console.log(altText)
             if(!item.isUserSent) {
               return (
                 <div key={i} className="col-start-1 col-end-8 p-3 rounded-lg">
@@ -23,7 +50,12 @@ const ChatContent = ({ filteredMessages }: ChatContentProps ) => {
                     <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
                       <div>
                         {
-                          typeof item === 'string' ? <img src={`${item}`} /> : item.message
+                          typeof item === 'string' ? (
+                            <ImageContainer dataItem={item} />
+                            
+                          ) : (
+                            item.message
+                          )
                         }
                       </div>
                     </div>
