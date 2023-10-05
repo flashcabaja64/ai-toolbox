@@ -98,7 +98,7 @@ const NavBar: React.FC = () => {
           <span className="sr-only">Open main menu</span>
           <HamburgerIcon />
         </button>
-        <div id="mega-menu-full" className="items-center justify-between font-medium md:hidden w-full 2xl:w-auto 2xl:order-1">
+        <div id="mega-menu-full" className="items-center justify-between font-medium md:hidden w-full 2xl:w-auto max:w-auto 2xl:order-1">
           <ul className="flex sm:flex-col sm:p-4 p-0 sm:mt-4 flex-row space-x-8 mt-0 md:bg-gray-900 border-gray-700">
             {pages.map(page => {
               return page.name === "Tools" ? (

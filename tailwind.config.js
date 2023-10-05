@@ -20,6 +20,7 @@ module.exports = {
         "secondary": "#282D34"
       },
       screens: {
+        max: { max: "2160px" },
         "2xl": { max: "1535px" },
         xl: { max: "1279px" },
         lg: { max: "1023px" },
