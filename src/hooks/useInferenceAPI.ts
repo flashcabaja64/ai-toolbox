@@ -18,11 +18,14 @@ export const useInferenceAPI = (
     switch(toolName) {
       case ToolType.TEXT_TO_IMAGE:
         try {
+          //'stabilityai/stable-diffusion-2-1'
           const res = await inference.textToImage({
-            model: 'stabilityai/stable-diffusion-2',
+            model: 'SG161222/Realistic_Vision_V1.4',
             inputs: text,
           })
+          console.log(new Blob([res]))
           setBlobOrText(URL.createObjectURL(res));
+          
           setLoading(false);
         } catch (e) {
           console.log(e)

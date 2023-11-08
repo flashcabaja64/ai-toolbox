@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import useScreenSize from '../../hooks/useScreenSize';
 import { ArrowDropUp, ArrowDropDown } from '@mui/icons-material';
 import { textLinks, imageLinks, audioLinks } from './links';
 import { HamburgerIcon, SiteLogo } from '../../assets/svgIcons';
@@ -37,7 +38,16 @@ const pages: { name: string, path: string }[] = [
 
 const NavBar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const [openHam, setOpenHam] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>()
+  const screenSize = useScreenSize();
+
+  useEffect(() => {
+    if(screenSize.width >= 767 && openHam) {
+      setOpenHam(false);
+      setOpen(false);
+    }
+  }, [screenSize.width])
 
   useEffect(() => {
     const handleOutsideClick = (e: Event) => {
@@ -60,13 +70,17 @@ const NavBar: React.FC = () => {
     setOpen(prev => !prev);
   };
 
+  const toggleHamburger = () => {
+    setOpenHam(prev => !prev);
+  }
+
   const Links = ({linkType, title}: LinksComponentProps) => {
     return (
       <div className='p-3 max-w-7xl'>
         <p className='border-b-[1.5px] border-gray-400 pb-2 mb-5 text-lg font-medium'>
           {title}
         </p>
-        <div className='grid grid-cols-2 gap-7 xs:grid-cols-1'>
+        <div className='grid grid-cols-2 gap-7 sm:grid-cols-1'>
           {
             linkType.map(link => (
               <div key={link.heading}>
@@ -89,17 +103,24 @@ const NavBar: React.FC = () => {
 
   return (
     <nav className="border-gray-600 bg-gray-900 fixed w-full z-10">
-      <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+      <div className="flex flex-wrap justify-between items-center mx-auto max-w-[1600px] p-4">
         <Link to="/" className="flex items-center">
           <SiteLogo className="h-8 mr-3" altText="AI Toolbox logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Toolbox</span>
         </Link>
-        <button type="button" className="md:inline-flex hidden items-center p-2 ml-1 text-sm rounded-lg  focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600" aria-controls="mega-menu-full" aria-expanded="false">
+
+        <button type="button" 
+          onClick={toggleHamburger} 
+          className="md:inline-flex hidden items-center p-2 ml-1 text-sm rounded-lg focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600" 
+          aria-controls="mega-menu-full" 
+          aria-expanded="false"
+        >
           <span className="sr-only">Open main menu</span>
           <HamburgerIcon />
         </button>
-        <div id="mega-menu-full" className="items-center justify-between font-medium md:hidden w-full 2xl:w-auto 2xl:order-1">
-          <ul className="flex sm:flex-col sm:p-4 p-0 sm:mt-4 flex-row space-x-8 mt-0 md:bg-gray-900 border-gray-700">
+        {/* 2xl:w-auto max:w-auto */}
+        <div id="mega-menu-full" className={`${openHam ? '!w-full' : 'md:hidden'} max:w-auto items-center justify-between font-medium 2xl:order-1`}>
+          <ul className="flex md:flex-col md:p-4 p-0 md:mt-4 md:space-x-0 flex-row space-x-8 mt-0 md:bg-gray-900 border-gray-700">
             {pages.map(page => {
               return page.name === "Tools" ? (
                 <li key={page.name} onClick={toggleDropDown}>

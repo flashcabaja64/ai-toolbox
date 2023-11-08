@@ -6,6 +6,7 @@ import { ToolType } from '../constants/constant';
 import Tool from "../pages/Tool";
 import ErrorPage from "../pages/ErrorPage";
 import Summarization from "../pages/Summarization";
+import Contact from "../components/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -17,10 +18,14 @@ export const router = createBrowserRouter([
         index: true,
         element: <Home />
       },
-      // {
-      //   path: "/text-to-image",
-      //   element: <Tool toolName={ToolType.TEXT_TO_IMAGE}/>
-      // },
+      {
+        path: "/contact",
+        element: <Contact />
+      },
+      {
+        path: "/text-to-image",
+        element: <Summarization />
+      },
       // {
       //   path: "/text-to-speech",
       //   element: <Tool toolName={ToolType.TEXT_TO_SPEECH}/>

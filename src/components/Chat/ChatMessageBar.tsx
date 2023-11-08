@@ -21,6 +21,12 @@ const ChatMessageBar = ({ onSubmit, getPrompt, setMessages, messages, loading }:
     }
   }
 
+  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSubmit()
+    }
+  }
+
   const inputValidation = () => {
     let promptWordLength = prompt.trim().split(" ").length;
     setErrorText("");
@@ -52,7 +58,8 @@ const ChatMessageBar = ({ onSubmit, getPrompt, setMessages, messages, loading }:
             disabled={loading} 
             placeholder='Start typing...'
             onChange={e => handleChange(e.target.value)} 
-            className={`flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10 ${errorText && 'border-red-500 focus:border-red-500'} ${loading && 'cursor-not-allowed bg-gray-300'}`} 
+            onKeyDown={(e) => onEnter(e)}
+            className={`flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 px-4 h-10 ${errorText && 'border-red-500 focus:border-red-500'} ${loading && 'cursor-not-allowed bg-gray-300'}`} 
           />
         </div>
         {errorText && <p className='text-red-500 text-sm'>{errorText}</p>}

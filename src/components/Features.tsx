@@ -19,11 +19,11 @@ const Features: React.FC = () => {
       <div className="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
         <div className="relative space-y-8 py-12 p-8">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png"
+            src="https://cdn-icons-png.flaticon.com/512/2659/2659360.png"
             className="w-12"
             width="512"
             height="512"
-            alt="burger illustration"
+            alt="colorful image"
           />
 
           <div className="space-y-2">
@@ -36,7 +36,7 @@ const Features: React.FC = () => {
               Convert text to stunning visuals effortlessly with AI-Generated Images.
             </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary hover:font-medium">
+          <a href="/text-to-image" className="flex items-center justify-between group-hover:text-secondary hover:font-medium">
             <span className="text-sm">Explore Now!</span>
             <ReadMoreArrow />               
           </a>
@@ -45,11 +45,11 @@ const Features: React.FC = () => {
       <div className="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
         <div className="relative space-y-8 py-12 p-8">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/4341/4341134.png"
+            src="https://cdn-icons-png.flaticon.com/512/684/684930.png"
             className="w-12"
             width="512"
             height="512"
-            alt="burger illustration"
+            alt="book"
           />
 
           <div className="space-y-2">
@@ -71,11 +71,11 @@ const Features: React.FC = () => {
       <div className="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
         <div className="relative space-y-8 py-12 p-8">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/4341/4341160.png"
+            src="https://cdn-icons-png.flaticon.com/512/8017/8017437.png"
             className="w-12"
             width="512"
             height="512"
-            alt="burger illustration"
+            alt="audio icon"
           />
 
           <div className="space-y-2">
@@ -101,11 +101,11 @@ const Features: React.FC = () => {
           className="relative space-y-8 py-12 p-8 transition duration-300 group-hover:bg-white dark:group-hover:bg-gray-800"
         >
           <img
-            src="https://cdn-icons-png.flaticon.com/512/4341/4341025.png"
+            src="https://cdn-icons-png.flaticon.com/512/4543/4543203.png"
             className="w-12"
             width="512"
             height="512"
-            alt="burger illustration"
+            alt="picture of a folder with files inside"
           />
 
           <div className="space-y-2">
