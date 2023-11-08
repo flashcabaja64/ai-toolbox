@@ -5,11 +5,11 @@ const Faqs = () => {
 
   let data = [
     {
-      question: 'What is this website about?',
-      answer: 'This is the stuff'
+      question: 'What is AI Toolbox?',
+      answer: 'This website offers a wide array of popular AI tools that can help with work productivity, personal creativity, and many more.'
     },
     {
-      question: 'Do I have to pay?',
+      question: 'Is there a subscription fee to use?',
       answer: 'No, this is completely free to use. The only drawback is the responses and questions are not saved.'
     }
   ];
@@ -25,26 +25,28 @@ const Faqs = () => {
         <div className={`${active ? 'text-gray-50': 'text-gray-300'} font-semibold`}>{question}</div>
         <div className={`text-2xl ${active ? 'text-gray-50': 'text-gray-300'} font-semibold`}>{active ? '-' : '+'}</div>
       </div>
-      {active && <div className='text-gray-400 pt-2'>{answer}</div>}
+      {active && <div className='text-gray-300 pt-2'>{answer}</div>}
     </div>
   )
 
   return (
-    <section className='bg-secondary'>
-      <h2 className='text-white text-[50px] text-center font-semibold xs:text-[40px]'>
-        Frequently Asked Questions
-      </h2>
+    <section className='bg-secondary min-h-full'>
+      <div className="">
+        <h2 className='text-white text-[50px] text-center font-semibold xs:text-[40px]'>
+          Frequently Asked Questions
+        </h2>
 
-      <div className='max-w-3xl my-2 divide-y-[1px] m-auto p-3'>
-        {data.map(({question, answer}, i) => (
-          <AccordionItem 
-            question={question} 
-            answer={answer} 
-            key={i} 
-            onToggle={() => handleToggle(i)}
-            active={isClicked === i}
-          />
-        ))}
+        <div className='max-w-3xl mt-2 divide-y-[1px] m-auto p-3'>
+          {data.map(({question, answer}, i) => (
+            <AccordionItem 
+              question={question} 
+              answer={answer} 
+              key={i} 
+              onToggle={() => handleToggle(i)}
+              active={isClicked === i}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )
