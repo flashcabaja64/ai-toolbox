@@ -3,7 +3,7 @@ import Modal from '../Modal';
 
 type ChatContentProps = {
   messages: { message: JSX.Element | string, isUserSent: boolean }[] | undefined;
-  filteredMessages: { message: JSX.Element, isUserSent: boolean }[]
+  filteredMessages: { message: JSX.Element, isUserSent: boolean }[];
 }
 
 const ChatContent = ({ filteredMessages }: ChatContentProps ) => {
@@ -29,6 +29,28 @@ const ChatContent = ({ filteredMessages }: ChatContentProps ) => {
     isModalOpen === false ? setImgSrc(filteredMessages[idx]) : setImgSrc("");
   }
 
+  const switchMedia = (item: any, idx: number) => {
+    switch(item.mediaType) {
+      case 'image/jpeg':
+        return (
+          <span onClick={() => {
+            toggleModal();
+            setImageModal(idx);
+          }}>
+            <img src={`${item.message}`} className="cursor-pointer" width="250px" height="250px" />
+          </span>
+        )
+      case 'audio/flac':
+        return (
+          <audio controls src={item.message}></audio>
+        )
+      default:
+        return (
+          item.message
+        )
+    }
+  }
+
   return (
     <div className='flex flex-col h-full'>
       <div className='grid grid-cols-12 gap-y-2'>
@@ -37,28 +59,16 @@ const ChatContent = ({ filteredMessages }: ChatContentProps ) => {
           filteredMessages.map((item, idx) => {
             //TODO: Need to pass last sent message as alt text for image.
             // let altText = item.isUserSent && item.message
-            
             if(!item.isUserSent) {
               return (
                 <div key={idx} className="col-start-1 col-end-8 p-3 rounded-lg">
                   <div className="flex flex-row items-center">
-                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                    <div className="flex items-center justify-center font-semibold h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                       AI
                     </div>
                     <div className="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
                       <div>
-                        {
-                          typeof item === 'string' ? (
-                            <span onClick={() => {
-                              toggleModal();
-                              setImageModal(idx);
-                            }}>
-                              <img src={`${item}`} className="cursor-pointer" width="250px" height="250px" />
-                            </span>
-                          ) : (
-                            item.message
-                          )
-                        }
+                        { switchMedia(item,idx) }
                       </div>
                     </div>
                   </div>
@@ -69,7 +79,7 @@ const ChatContent = ({ filteredMessages }: ChatContentProps ) => {
               return (
                 <div key={idx} className="col-start-6 col-end-13 p-3 rounded-lg">
                   <div className="flex items-center justify-start flex-row-reverse">
-                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                    <div className="flex items-center justify-center font-semibold h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                       Me
                     </div>
                     <div className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">

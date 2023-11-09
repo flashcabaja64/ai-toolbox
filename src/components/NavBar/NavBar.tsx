@@ -28,7 +28,7 @@ const pages: { name: string, path: string }[] = [
   },
   {
     name: "FAQ's",
-    path: "/faqs"
+    path: "/#faq-section"
   },
   {
     name: "Contact Us",
@@ -119,7 +119,7 @@ const NavBar: React.FC = () => {
           <HamburgerIcon />
         </button>
         {/* 2xl:w-auto max:w-auto */}
-        <div id="mega-menu-full" className={`${openHam ? '!w-full' : 'md:hidden'} max:w-auto items-center justify-between font-medium 2xl:order-1`}>
+        <div id="mega-menu-full" className={`${openHam ? '!w-full animate-fadeInSlideDown' : 'md:hidden animate-fadeInSlideUp'} max:w-auto items-center justify-between font-medium 2xl:order-1`}>
           <ul className="flex md:flex-col md:p-4 p-0 md:mt-4 md:space-x-0 flex-row space-x-8 mt-0 md:bg-gray-900 border-gray-700">
             {pages.map(page => {
               return page.name === "Tools" ? (

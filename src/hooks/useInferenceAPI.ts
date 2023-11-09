@@ -8,7 +8,8 @@ export const useInferenceAPI = (
   setBlobOrText: React.Dispatch<React.SetStateAction<string | APIResponseType | undefined>>, 
   setLoading: React.Dispatch<React.SetStateAction<boolean>>, 
   text: string,
-  image: FileList | null) => {
+  image: FileList | null
+) => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     //e.preventDefault();
@@ -23,23 +24,31 @@ export const useInferenceAPI = (
             model: 'SG161222/Realistic_Vision_V1.4',
             inputs: text,
           })
-          console.log(new Blob([res]))
-          setBlobOrText(URL.createObjectURL(res));
-          
+          setBlobOrText({
+            message: URL.createObjectURL(res),
+            isUserSent: false,
+            mediaType: res.type
+          });
           setLoading(false);
         } catch (e) {
           console.log(e)
         }
         break;
         case ToolType.TEXT_TO_SPEECH:
+          //espnet/kan-bayashi_ljspeech_vits
           try {
-            const res = await inference.textToSpeech({
-              model: 'espnet/kan-bayashi_ljspeech_vits',
+            const res: any = await inference.textToSpeech({
+              model: 'facebook/mms-tts-eng',
               inputs: text,
             })
-            setBlobOrText(URL.createObjectURL(res));
+            setBlobOrText({
+              message: URL.createObjectURL(res),
+              isUserSent: false,
+              mediaType: res.type
+            });
             setLoading(false);
           } catch (e) {
+            setLoading(false);
             console.log(e)
           }
           break;
