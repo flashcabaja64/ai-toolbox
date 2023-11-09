@@ -30,7 +30,7 @@ const Faqs = () => {
   )
 
   return (
-    <section className='bg-secondary min-h-full'>
+    <section className='bg-secondary min-h-full' id="faq-section">
       <div className="">
         <h2 className='text-white text-[50px] text-center font-semibold xs:text-[40px]'>
           Frequently Asked Questions

@@ -7,7 +7,7 @@ const Home: React.FC = () => {
   return (
     <>
       <div 
-        className='relative w-[100vw] h-[95vh] max-w-[100] bg-cover bg-hero bg-center bg-no-repeat'
+        className='relative w-100 h-[95vh] max-w-[100] bg-cover bg-hero bg-center bg-no-repeat'
         style={{ backgroundPosition: "50%" }}
       >
         <div className='absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed'>

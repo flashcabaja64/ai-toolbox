@@ -62,6 +62,7 @@ const Chat = () => {
             getPrompt={getPrompt} 
             setMessages={setMessages} 
             messages={messages} 
+            toolName={toolName}
           />
         </div>
       </div>

@@ -5,7 +5,7 @@ import { ReadMoreArrow } from '../assets/svgIcons';
 const Features: React.FC = () => {
   return (
     <Container className='py-4'>
-      <div className="w-full">
+      <div className="w-full text-center">
         <h2 className="my-8 text-2xl font-bold text-black md:text-4xl">
           Intelligent Personalization: Empowering Tools at Your Fingertips
         </h2>
@@ -13,6 +13,7 @@ const Features: React.FC = () => {
           Experience the transformative capabilities of our diverse AI tools and embrace the potential of artificial intelligence, elevating your online experience to new heights. Don't miss out on the future take the next step and explore the limitless possibilities of our AI website now!
         </p>
       </div>
+
       <div
       className="mt-16 grid grid-cols-4 divide-x divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden rounded-3xl border border-gray-100 text-gray-600 dark:border-gray-700 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:divide-y-0"
     >
@@ -30,7 +31,7 @@ const Features: React.FC = () => {
             <h5
               className="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
             >
-              First feature
+              Text to Image
             </h5>
             <p className="text-gray-600 dark:text-gray-300">
               Convert text to stunning visuals effortlessly with AI-Generated Images.
@@ -56,13 +57,13 @@ const Features: React.FC = () => {
             <h5
               className="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
             >
-              Second feature
+              Summarization
             </h5>
             <p className="text-gray-600 dark:text-gray-300">
             Save time with AI-Powered Summaries, extracting key insights from lengthy text.
             </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary hover:font-medium">
+          <a href="/summarization" className="flex items-center justify-between group-hover:text-secondary hover:font-medium">
             <span className="text-sm">Explore Now!</span>
             <ReadMoreArrow />                  
           </a>
@@ -82,13 +83,13 @@ const Features: React.FC = () => {
             <h5
               className="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
             >
-              Third feature
+              Text to Speech
             </h5>
             <p className="text-gray-600 dark:text-gray-300">
-            Bring your content to life with Text-to-Audio Conversion
+            Instantly bring your text to life by converting text to speech. 
             </p>
           </div>
-          <a href="#" className="flex items-center justify-between group-hover:text-secondary hover:font-medium">
+          <a href="/text-to-speech" className="flex items-center justify-between group-hover:text-secondary hover:font-medium">
             <span className="text-sm">Explore Now!</span>
             <ReadMoreArrow />                   
           </a>
@@ -112,7 +113,7 @@ const Features: React.FC = () => {
             <h5
               className="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary"
             >
-              More features
+              Many more...
             </h5>
             <p className="text-gray-600 dark:text-gray-300">
               There are many more features at the touch of your fingertips.
